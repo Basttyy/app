@@ -1,4 +1,6 @@
 <?php
+namespace Database\Seeders;
+
 use App\Enumerations\UserStatus;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Seeder;

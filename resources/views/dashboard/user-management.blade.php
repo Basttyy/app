@@ -31,7 +31,7 @@
                         </li>
                         @endpermission
                         @permission('create-user')
-                        <li{!! auth()->user()->canCreateUser() && !auth()->user()->canReadUser() ? ' class="active"':'' !!}>
+                        <li{!! Auth::user()->isAbleToCreateUser() && !Auth::user()->isAbleToReadUser() ? ' class="active"':'' !!}>
                             <a href="#addnewusers" data-toggle="tab">{{ __('Register new users') }}</a>
                         </li>
                         @endpermission
@@ -57,7 +57,7 @@
                             </table>
                         </div>@endpermission
                         @permission('create-user')
-                        <div class="{!! auth()->user()->canCreateUser() && !auth()->user()->canReadUser() ? 'active ':'' !!}tab-pane" id="addnewusers">
+                        <div class="{!! auth()->user()->isAbleToCreateUser() && !auth()->user()->isAbleToReadUser() ? 'active ':'' !!}tab-pane" id="addnewusers">
                             <form id="addNewUserForm" class="form-horizontal" action="{{ route('users.store') }}" method="POST">
                                 {{ csrf_field() }}
                                 <div class="form-group">

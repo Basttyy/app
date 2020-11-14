@@ -34,23 +34,23 @@ class DatatableController extends Controller
     {
         $rooms = Room::all();
         return DataTables::of($rooms)
-            ->addColumn('action', function ($room) {
+            ->addColumn('action', function (Room $room) {
                 $viewText = __('View');
                 $editText = __('Edit');
                 $deleteText = __('Delete');
 
-                $viewUrl = route('rooms.show', ['id' => $room->id]);
-                $editUrl = route('rooms.edit', ['id' => $room->id]);
-                $deleteUrl = route('rooms.destroy', ['id' => $room->id]);
+                $viewUrl = route('rooms.show', ['room' => $room->id]);
+                $editUrl = route('rooms.edit', ['room' => $room->id]);
+                $deleteUrl = route('rooms.destroy', ['room' => $room->id]);
 
                 $actionBtn = [];
                 $viewBtn = '<a class="btn btn-primary btn-xs" href="'. $viewUrl .'"><span class="glyphicon glyphicon-search"></span> '.$viewText.'</a>';
                 $editBtn = '<a class="btn btn-default btn-xs" href="'. $editUrl .'"><span class="glyphicon glyphicon-edit"></span> '.$editText.'</a>';
                 $deleteBtn = '<button class="btn btn-default btn-xs btn-delete" data-name="'.$room->name.'" data-remote="'. $deleteUrl .'"><span class="glyphicon glyphicon-trash"></span> '.$deleteText.'</button>';
 
-                $actionBtn[] = auth()->user()->canReadRoom() ? $viewBtn : '';
-                $actionBtn[] = auth()->user()->canUpdateRoom() ? $editBtn : '';
-                $actionBtn[] = auth()->user()->canDeleteRoom() ? $deleteBtn : '';
+                $actionBtn[] = auth()->user()->isAbleToReadRoom() ? $viewBtn : '';
+                $actionBtn[] = auth()->user()->isAbleToUpdateRoom() ? $editBtn : '';
+                $actionBtn[] = auth()->user()->isAbleToDeleteRoom() ? $deleteBtn : '';
 
                 return implode(' ', $actionBtn);
             })
@@ -95,14 +95,14 @@ class DatatableController extends Controller
                 $editText = __('Edit');
                 $cancelText = __('Cancel');
 
-                $editUrl = route('bookings.edit', ['id' => $booking->id]);
-                $deleteUrl = route('bookings.destroy', ['id' => $booking->id]);
+                $editUrl = route('bookings.edit', ['booking' => $booking->id]);
+                $deleteUrl = route('bookings.destroy', ['booking' => $booking->id]);
 
                 $editBtn = '<a class="btn btn-primary btn-xs" href="'. $editUrl .'"><span class="glyphicon glyphicon-edit"></span> '.$editText.'</a>';
                 $cancelBtn = '<button class="btn btn-danger btn-xs btn-delete" data-remote="'. $deleteUrl .'"><span class="glyphicon glyphicon-remove"></span> '.$cancelText.'</button>';
 
                 $actionBtn = $booking->status === BookingStatus::OPTION ? $cancelBtn . $editBtn: '';
-                return auth()->user()->canDeleteBooking() ? $actionBtn : '';
+                return auth()->user()->isAbleToDeleteBooking() ? $actionBtn : '';
             })
             ->make(true);
     }
@@ -126,15 +126,15 @@ class DatatableController extends Controller
                     $editText = __('Edit');
                     $deleteText = __('Delete');
 
-                    $editUrl = route('users.edit', ['id' => $user->id]);
-                    $deleteUrl = route('users.destroy', ['id' => $user->id]);
+                    $editUrl = route('users.edit', ['user' => $user->id]);
+                    $deleteUrl = route('users.destroy', ['user' => $user->id]);
 
                     $actionBtn = [];
                     $editBtn = '<a class="btn btn-primary btn-xs" href="'. $editUrl .'"><span class="glyphicon glyphicon-edit"></span> '.$editText.'</a>';
                     $deleteBtn = '<button class="btn btn-default btn-xs btn-delete" data-name="'.$user->name.'" data-remote="'. $deleteUrl .'"><span class="glyphicon glyphicon-trash"></span> '.$deleteText.'</button>';
 
-                    $actionBtn[] = auth()->user()->canUpdateUser() ? $editBtn : '';
-                    $actionBtn[] = auth()->user()->canDeleteUser() ? $deleteBtn : '';
+                    $actionBtn[] = auth()->user()->isAbleToUpdateUser() ? $editBtn : '';
+                    $actionBtn[] = auth()->user()->isAbleToDeleteUser() ? $deleteBtn : '';
 
                     return implode(' ', $actionBtn);
                 })
@@ -158,15 +158,15 @@ class DatatableController extends Controller
                     $editText = __('Edit');
                     $deleteText = __('Delete');
 
-                    $editUrl = route('security.edit', ['id' => $role->name]);
-                    $deleteUrl = route('security.destroy', ['id' => $role->id]);
+                    $editUrl = route('security.edit', ['security' => $role->name]);
+                    $deleteUrl = route('security.destroy', ['security' => $role->id]);
 
                     $actionBtn = [];
                     $editBtn = '<a class="btn btn-primary btn-xs" href="'. $editUrl .'"><span class="glyphicon glyphicon-edit"></span> '.$editText.'</a>';
                     $deleteBtn = '<button class="btn btn-default btn-xs btn-delete" data-name="'.$role->name.'" data-remote="'. $deleteUrl .'"><span class="glyphicon glyphicon-trash"></span> '.$deleteText.'</button>';
 
-                    $actionBtn[] = auth()->user()->canUpdateUser() ? $editBtn : '';
-                    $actionBtn[] = auth()->user()->canDeleteUser() ? $deleteBtn : '';
+                    $actionBtn[] = auth()->user()->isAbleToUpdateUser() ? $editBtn : '';
+                    $actionBtn[] = auth()->user()->isAbleToDeleteUser() ? $deleteBtn : '';
 
                     return implode(' ', $actionBtn);
                 })

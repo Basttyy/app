@@ -1,4 +1,5 @@
 <?php
+namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Enumerations\BookingStatus;
@@ -22,7 +23,7 @@ class BookingsTableSeeder extends Seeder
                 'booked_by' => 1,
                 'start_date' => $start,
                 'end_date' => $end,
-                'status' => BookingStatus::ACTIVE
+                'status' => BookingStatus::CONFIRMED
             ];
 
             \App\Booking::create($data);

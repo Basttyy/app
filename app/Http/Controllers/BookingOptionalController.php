@@ -36,8 +36,13 @@ class BookingOptionalController extends Controller
     public function create()
     {
         $pageTitle = 'New Optional';
+        $pageSubHeader = '';
         $pageHeader = 'New Optional';
-        return view('dashboard.add_new_optional',compact('pageTitle','pageHeader'));
+        return view('dashboard.add_new_optional')->with([
+            'pageHeader' => $pageHeader,
+            'pageSubHeader' => $pageSubHeader,
+            'pageTitle' => $pageTitle
+        ]);
     }
 
 

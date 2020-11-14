@@ -32,7 +32,7 @@
                         </li>
                         @endpermission
                         @permission('create-booking')
-                        <li{!! auth()->user()->canCreateBooking() && !auth()->user()->canReadBooking() ? ' class="active"':'' !!}>
+                        <li {!! auth()->user()->isAbleToCreateBooking() && !auth()->user()->isAbleToReadBooking() ? ' class="active"':'' !!}>
                             <a href="#addNewBooking" data-toggle="tab">{{ __('Make new booking') }}</a>
                         </li>
                         @endpermission
@@ -66,7 +66,7 @@
                             </table>
                         </div>@endpermission
                         @permission('create-booking')
-                        <div class="{!! auth()->user()->canCreateBooking() && !auth()->user()->canReadBooking() ? 'active ':'' !!}tab-pane" id="addNewBooking">
+                        <div class="{!! auth()->user()->isAbleToCreateBooking() && !auth()->user()->isAbleToReadBooking() ? 'active ':'' !!}tab-pane" id="addNewBooking">
                             <form id="search" action="{{ route('bookings.search') }}" method="POST">
                                 {{ csrf_field() }}
                                 <div class="row">
@@ -100,9 +100,7 @@
                                             <label>{{ __('Location') }}</label>
                                             <select class="form-control" style="width: 100%;" name="location">
                                                 <option value="">Please select one</option>
-                                                @foreach($sedi as $sede)
-                                                    <option>{{ $sede->sede }}</option>
-                                                    @endforeach
+                                                <!-- Still add options for location -->
                                             </select>
                                         </div>
                                         <!-- /.form-group -->

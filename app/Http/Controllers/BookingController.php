@@ -50,10 +50,10 @@ class BookingController extends Controller
     public function index()
     {
 
-        $this->location['sedi'] = Location::groupBy('id')->orderBy('id')->get(['sede']);
+        //$this->location['sedi'] = Location::groupBy('id')->orderBy('id')->get(['sede']);
         $this->data['rooms'] = Room::groupBy('pax')->orderBy('pax')->get(['pax']);
 
-        return view('dashboard.booking-management', $this->data, $this->location);
+        return view('dashboard.booking-management', $this->data);
     }
 
     /**

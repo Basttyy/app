@@ -52,25 +52,45 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
     Route::get('/calendar/all', function () {
         $pageHeader = 'Booking Calendar';
         $pageTitle = 'Booking Calendar';
-        return view('dashboard.rooms-all',compact('pageHeader','pageTitle'));
+        $pageSubHeader = '';
+        return view('dashboard.rooms-all')->with([
+            'pageHeader' => $pageHeader,
+            'pageSubHeader' => $pageSubHeader,
+            'pageTitle' => $pageTitle
+        ]);
     })->name('total_calendar_booking');
 
     Route::get('/calendar/eur', function () {
         $pageHeader = 'Booking Calendar Eur';
+        $pageSubHeader = '';
         $pageTitle = 'Booking Calendar Eur';
-        return view('dashboard.rooms-eur',compact('pageHeader','pageTitle'));
+        return view('dashboard.rooms-eur')->with([
+            'pageHeader' => $pageHeader,
+            'pageSubHeader' => $pageSubHeader,
+            'pageTitle' => $pageTitle
+        ]);
     })->name('total_calendar_booking_eur');
 
     Route::get('/calendar/boezio', function () {
         $pageHeader = 'Booking Calendar Boezio';
+        $pageSubHeader = '';
         $pageTitle = 'Booking Calendar Boezio';
-        return view('dashboard.rooms-boezio',compact('pageHeader','pageTitle'));
+        return view('dashboard.rooms-boezio')->with([
+            'pageHeader' => $pageHeader,
+            'pageSubHeader' => $pageSubHeader,
+            'pageTitle' => $pageTitle
+        ]);
     })->name('total_calendar_booking_boezio');
 
     Route::get('/calendar/regolo', function () {
         $pageHeader = 'Booking Calendar Regolo';
+        $pageSubHeader = '';
         $pageTitle = 'Booking Calendar Regolo';
-        return view('dashboard.rooms-regolo',compact('pageHeader','pageTitle'));
+        return view('dashboard.rooms-regolo')->with([
+            'pageHeader' => $pageHeader,
+            'pageSubHeader' => $pageSubHeader,
+            'pageTitle' => $pageTitle
+        ]);
     })->name('total_calendar_booking_regolo');
 
 
