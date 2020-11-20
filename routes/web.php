@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Redis;
+use App\Http\Controllers\BookingController;
+use App\Http\Controllers\BookingOptionalController;
+use App\Http\Controllers\Auth\ChangePasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -98,13 +101,13 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
 
    // Route::resource('/options','OptionalController');
    // Route::get('/options','OptionalController@create')->name('optional.create');
-    Route::resource('bookingoptionals','BookingOptionalController');
+    Route::resource('bookingoptionals', 'BookingOptionalController');
     Route::post('bookingoptional/storenewoptional','BookingOptionalController@storenewoptional')->name('storenewoptional');
 
     Route::get('bookingoptionals/optionalcreate/{id}','BookingOptionalController@optionalcreate')->name('optionalcreate');
 
     Route::get('change-password', 'ChangePasswordController@show')->name('change-password.show');
-    Route::put('change-password', 'ChangePasswordController@update')->name('change-password.update');
+    Route::put('change-password', [ChangePasswordController::class, 'update'])->name('change-password.update');
 });
 
 Route::prefix('datatables')->group(function () {
