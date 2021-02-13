@@ -1,4 +1,5 @@
 <?php
+use Swoole\Table;
 
 return [
     /*
@@ -127,11 +128,11 @@ return [
     |--------------------------------------------------------------------------
     */
     'tables' => [
-        // 'table_name' => [
-        //     'size' => 1024,
-        //     'columns' => [
-        //         ['name' => 'column_name', 'type' => Table::TYPE_STRING, 'size' => 1024],
-        //     ]
-        // ],
+        'table_name' => [
+            'size' => 1024,
+            'columns' => [
+                ['name' => 'column_name', 'type' => Table::TYPE_STRING, 'size' => 1024],
+            ]
+        ],
     ],
 ];

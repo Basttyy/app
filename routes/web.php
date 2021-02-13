@@ -106,7 +106,7 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
 
     Route::get('bookingoptionals/optionalcreate/{id}','BookingOptionalController@optionalcreate')->name('optionalcreate');
 
-    Route::get('change-password', 'ChangePasswordController@show')->name('change-password.show');
+    Route::get('change-password', [ChangePasswordController::class, 'show'])->name('change-password.show');
     Route::put('change-password', [ChangePasswordController::class, 'update'])->name('change-password.update');
 });
 

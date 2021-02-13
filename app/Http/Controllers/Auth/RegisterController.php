@@ -7,6 +7,7 @@ use App\User;
 use App\Http\Controllers\Controller;
 use App\UserActivation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -92,7 +93,7 @@ class RegisterController extends Controller
         $user = $this->create($request->all());
 
         // Generate token for email verification later
-        $token = str_random(40);
+        $token = Str::random(40);
 
         UserActivation::create([
             'user_id' => $user->id,

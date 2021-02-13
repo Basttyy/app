@@ -6,7 +6,7 @@
     "type": "project",
     "require": {
         "php": ">=7.3.0",
-        "almasaeed2010/adminlte": "~2.4",
+        "almasaeed2010/adminlte": "^3.1.0-rc",
         "facade/ignition": "^2.3.6",
         "fideloper/proxy": "~4.4",
         "guzzlehttp/guzzle": "^7.0.1",

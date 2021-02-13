@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Requests\ChangePassword;
+use App\Http\Controllers\Controller;
 
 /**
  * Class ChangePasswordController
